@@ -174,6 +174,20 @@
 4. **预览站的 about 页是副本独有**：测试副本 `content/about.md` 为给「关于」导航项凑落点而加；正式站切换时需正式补一篇关于页（或改导航），别把副本那篇短文直接当正式内容。
 5. **主旨语参数**：正式站 `hugo.toml` 须配 `[params.tobpage] heroMotto = '普天之下，皆为客'`（2026-11-08 用户定版，见 §9）；Hero 区与开场动画共用此参数，不配则两处都不显示主旨语。同段的 `startDate`、`moeIcp`、`moeIcpURL` 也须照预览副本的值显式配好。
 
+### 7.4 正式切换完成记录（2026-11-08）
+
+§7.3 五项已全部落实，普客网正式站已由 PaperMod 切换为 Tobpage：
+
+1. ✅ Sveltia `static/admin/config.yml` 分类选项换成 14 个叶子分类。
+2. ✅ 9 篇存量文章分类 `诗词 → 古诗词`（date 与正文未动；站内无其他旧分类文章）。
+3. ✅ 旧地址 `/categories/诗词/` 线上实测 404（未留 aliases 跳转页，如实记录）。
+4. ✅ 正式站新写 `content/about.md`（非预览副本短文）：主旨、五大栏目、联系邮箱、自 2026 年 10 月起运行。
+5. ✅ 线上 `hugo.toml` 已配 `[params.tobpage]`：`heroMotto = '普天之下，皆为客'`、`startDate = '2026-10-29'`、`moeIcp`、`moeIcpURL`，与预览副本一致。
+
+- **切换提交**：tobaye/tobaye.github.io `db940563`（2026-11-08 23:39 CST，增量树提交，父提交 `03cfd1ec` 即回滚点；themes/PaperMod 保留在仓内未删）。Actions「Deploy Hugo site to Pages」一次成功，线上逐项验活全过（首页/文章/分类/归档/搜索/关于/RSS/JSON/后台/图片 200，不存在路径 404，页脚 © · Hugo · 萌ICP备 + 运行天数组件齐全）。
+- **附带修复**：切换后发现 `/robots.txt` 404。实测定位：Hugo 0.169 在站点配了 `[languages]` 块时不生成 robots.txt（与模板位置无关，最小站点对照验证；PaperMod 时期同样受此影响，非本次切换引入）。正式站改用 `static/robots.txt` 静态文件（内容与主题模板的生产输出一致），修复提交 `398595f0`（23:42 CST），线上已 200。主题内的 `layouts/robots.txt` 模板保留，供未配 `[languages]` 的站点使用。
+- **主题源码仓**：tobaye/Tobpage（主题文件 + 本文档），与站点仓内的 `themes/tobpage/` 同源；今后改主题先动源码仓再同步进站。
+
 ## 8. 移动端二级菜单 bug 根因（2026-11-08 修复）
 
 - **现象**：手机上展开父栏目后，子菜单文字与图标全部出屏，只剩右对齐的彩色圆点留在屏内（用户实机截图）。
