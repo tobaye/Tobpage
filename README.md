@@ -70,7 +70,7 @@ theme = "tobpage"
 
 ## 字体出处
 
-印章篆字使用自托管子集字体 `static/fonts/tobpage-seal.woff2`（家族名 Tobpage Seal，仅含印章用字）：字形源为全字庫說文解字，數位發展部，CNS11643中文標準交換碼全字庫網站，https://www.cns11643.gov.tw ，依《政府資料開放授權條款－第 1 版》子集化并改名使用。其余文字全部使用系统字体，无外部字体请求。
+站名整图 `static/img/hero-title.webp`（站点以 `params.tobpage.titleImage` 启用）由两款字体离线合成：大字为马善政毛笔体（Ma Shan Zheng，Google Fonts，SIL Open Font License 1.1）；印章篆字字形源为全字庫說文解字，數位發展部，CNS11643中文標準交換碼全字庫網站，https://www.cns11643.gov.tw ，依《政府資料開放授權條款－第 1 版》使用。合成脚本存于主题仓 `assets-src/`。页面文字全部使用系统字体，无外部字体请求。
 
 ## 许可
 
