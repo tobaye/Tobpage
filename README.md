@@ -60,12 +60,17 @@ theme = "tobpage"
 
 [params.tobpage]
   heroMotto = "普天之下，皆为客。"       # Hero 与开场动画的主旨语
+  sealText = "普客网印"                # 主旨行右端的印章文字（4 字，篆书竖排 2×2）
   startDate = "2026-10-29"             # 页脚「本站已运行 X 天」的起算日
   moeIcp = "萌ICP备20269123号"          # 页脚备案号
   moeIcpURL = "https://icp.gov.moe/?keyword=20269123"  # 备案链接
 ```
 
 栏目体系（分类名→栏目/图标/配色）在主题的 `layouts/partials/category-meta.html` 一处定义，换栏目改这一处即可；大圣视觉素材在 `static/img/`，替换同名文件即可换图。
+
+## 字体出处
+
+印章篆字使用自托管子集字体 `static/fonts/tobpage-seal.woff2`（家族名 Tobpage Seal，仅含印章用字）：字形源为全字庫說文解字，數位發展部，CNS11643中文標準交換碼全字庫網站，https://www.cns11643.gov.tw ，依《政府資料開放授權條款－第 1 版》子集化并改名使用。其余文字全部使用系统字体，无外部字体请求。
 
 ## 许可
 
