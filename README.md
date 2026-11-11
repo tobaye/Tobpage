@@ -57,6 +57,10 @@ theme = "tobpage"
 ```toml
 [params]
   heroImage = "/img/hero-wukong.jpg"   # Hero 背景图（可替换为任意图）
+  ogImage = ""                          # 分享预览图（og:image / twitter:image）默认值，可空（见下）
+
+[params.assets]
+  favicon = ""                          # 站点图标路径，可空（见下）
 
 [params.tobpage]
   heroMotto = "普天之下，皆为客。"       # Hero 与开场动画的主旨语
@@ -65,6 +69,10 @@ theme = "tobpage"
   moeIcp = "萌ICP备20269123号"          # 页脚备案号
   moeIcpURL = "https://icp.gov.moe/?keyword=20269123"  # 备案链接
 ```
+
+分享预览图（`og:image` / `twitter:image`）：文章页优先用该文的 `cover.image`；没有时依次回退站点参数 `ogImage`、`heroImage`，再没有就用主题自带的 `img/hero-wukong.jpg`，输出恒为绝对地址。想全站统一一张分享图，配 `ogImage` 即可。
+
+站点图标（favicon）：配了 `params.assets.favicon` 就用站点自己的文件；不配则自动用主题自带的 `static/favicon.svg`（墨黑底、鎏金云纹、朱砂点），不会 404。想换图，把自己的 `favicon.svg` 放进站点 `static/` 同名覆盖即可。
 
 栏目体系（分类名→栏目/图标/配色）在主题的 `layouts/partials/category-meta.html` 一处定义，换栏目改这一处即可；大圣视觉素材在 `static/img/`，替换同名文件即可换图。
 
