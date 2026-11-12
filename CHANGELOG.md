@@ -1,5 +1,10 @@
 # 更新日志
 
+## v1.1.0 (2026-11-12)
+
+- 新增评论区（Giscus）：文章页底部可渲染基于 GitHub Discussions 的评论，站点参数 `params.tobpage.giscus` 配置（`enable` 开关 + `repo` / `repoId` / `category` / `categoryId` 四项齐全才渲染），按路径（pathname）映射讨论，中文界面、跟随系统深浅色；不配或关开关则完全不输出
+- 新增 Cloudflare Web Analytics 支持：站点参数 `params.tobpage.cfBeaconToken` 填入信标令牌后，全站自动输出官方 beacon 脚本（无 Cookie 统计）；不配则不输出
+
 ## v1.0.1 (2026-11-12)
 
 - 新增分享预览图：head 输出 `og:image` 与 Twitter Card（`summary_large_image` + `twitter:image`），取值优先级为文章 `cover.image` → 站点参数 `ogImage` → `heroImage` → 主题自带 `img/hero-wukong.jpg`，一律输出绝对地址
