@@ -1,5 +1,9 @@
 # 更新日志
 
+## v1.1.1 (2026-11-12)
+
+- 移除 v1.1.0 加入的 Giscus 评论与 Cloudflare Web Analytics 信标支持：这两项功能依赖主题之外的前置条件（绑定 Cloudflare、安装 GitHub 应用并取得令牌），与「主题开箱即用、零前置」的定位冲突，故从主题层下线，改由需要的站点在站点层自行接入（站点级模板覆盖 + 站点参数即可实现，不必改主题）。主题本身只修模板自身的问题；本版模板与 v1.0.1 功能一致（og:image、主题自带默认 favicon 均保留）
+
 ## v1.1.0 (2026-11-12)
 
 - 新增评论区（Giscus）：文章页底部可渲染基于 GitHub Discussions 的评论，站点参数 `params.tobpage.giscus` 配置（`enable` 开关 + `repo` / `repoId` / `category` / `categoryId` 四项齐全才渲染），按路径（pathname）映射讨论，中文界面、跟随系统深浅色；不配或关开关则完全不输出

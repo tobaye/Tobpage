@@ -68,19 +68,7 @@ theme = "tobpage"
   startDate = "2026-10-29"             # 页脚「本站已运行 X 天」的起算日
   moeIcp = "萌ICP备20269123号"          # 页脚备案号
   moeIcpURL = "https://icp.gov.moe/?keyword=20269123"  # 备案链接
-  cfBeaconToken = ""                   # Cloudflare Web Analytics 信标令牌，可空（见下）
-
-  [params.tobpage.giscus]              # 文章评论（Giscus），可整段省略（见下）
-    enable = false
-    repo = "you/your-repo"
-    repoId = ""
-    category = "Announcements"
-    categoryId = ""
 ```
-
-评论（Giscus）：文章页底部可挂基于 GitHub Discussions 的评论区。先决条件：仓库开启 Discussions 并安装 [giscus 应用](https://github.com/apps/giscus)；`repoId` 与 `categoryId` 在 [giscus.app](https://giscus.app) 配置页生成。四项 ID 齐全且 `enable = true` 才渲染，按文章路径映射讨论，访客用 GitHub 账号登录评论，主题本身不存任何评论数据。不配或关开关，页面零输出。
-
-访问统计（Cloudflare Web Analytics）：在 Cloudflare 控制台的 Web Analytics 里添加站点后拿到信标令牌，填到 `params.tobpage.cfBeaconToken`，全站即自动输出官方 beacon 脚本（无 Cookie、无需改 DNS 代理状态）；不填不输出。
 
 分享预览图（`og:image` / `twitter:image`）：文章页优先用该文的 `cover.image`；没有时依次回退站点参数 `ogImage`、`heroImage`，再没有就用主题自带的 `img/hero-wukong.jpg`，输出恒为绝对地址。想全站统一一张分享图，配 `ogImage` 即可。
 
