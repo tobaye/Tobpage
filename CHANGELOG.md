@@ -1,5 +1,27 @@
 # 更新日志
 
+## v1.2.0 (2026-11-12)
+
+新增功能（全部开箱即用：纯主题代码、零账号/令牌/外部绑定，不配不坏）：
+
+- **系列文章导航**：front matter 写 `series`（系列名）+ 可选 `series_order`（序号）即启用；同系列 ≥2 篇时文首渲染系列框——系列名、全系列有序目录（当前篇标「本篇」）、「本系列第 X / N 篇」；未写序号的篇目按日期排在已编号之后
+- **相关文章**：文末新增「相关文章」区块，用 Hugo Related Content 内置默认索引（keywords 100 / tags 80 / date 10，阈值 80），最多 4 篇，复用文章卡片样式；无结果不渲染。站点可在 `hugo.toml` 写 `[related]` 调整（如 `includeNewer = true`）
+- **代码块一键复制**：正文每个代码块注入复制按钮，`navigator.clipboard` 优先、隐藏 textarea 降级，带「已复制」反馈；深浅双色适配
+- **图片灯箱**：收尾此前只有 `cursor: zoom-in` 样式没有行为的半截实现——点击正文图片打开全屏灯箱，可前后翻看本篇全部图片（按钮/方向键/Esc/点背景关闭），图注取 alt；包着真外链的图片不拦截、照常跳转（取代旧版「新窗口打开原图」）
+- **排版 shortcode 组**（`layouts/shortcodes/`，原先为空白）：`notice`（note/tip/warn 三型提示框）、`details`（原生 `<details>` 折叠块，`open` 可默认展开）、`tabs`+`tab`（标签页，JS 收成选项卡，无 JS 时平铺不丢内容）；用法示例见 README。框内 Markdown 由模板 `markdownify` 渲染，不依赖站点 goldmark `unsafe` 设置
+
+自审修复（2026-11-12 主题自审，条目与 `~/workspace/tobpage-audit/AUDIT.md` 对应）：
+
+- [高] 分类索引页 `taxonomy.html` 里 `append` 参数序写反：任何一篇文章用到未登记分类，整站构建直接失败——已改 `$extra | append .`，「其他」兜底组现可正常渲染
+- [高] `cover` 写成字符串（而非 map）时 `.Params.cover.image` 在 baseof/single/post-card 三处让整站构建失败——三处统一加 map 守卫，异形 cover 按无封面处理
+- [中] `heroImage` 写相对路径时 CSS 变量按样式表路径解析导致 Hero 背景 404——index.html 对相对路径先 `relURL`，与 og 链口径一致
+- [中] 主题硬依赖的站点脚手架（search/archives/about 三页 + 首页 `[outputs]` JSON）此前未写入文档——README 新增「站点脚手架」节（含 robots.txt 与新版 `[pagination]` 键说明）
+- [低] 无日期文章：文章页不再显示「0001年1月1日」，归档页不再静默吞掉、单列「未注明日期」组
+- [低] `og:image` 对页面包相对路径的 `cover.image` 解析到站点根导致分享图 404——先按页面资源解析；同一根因在文章卡片与封面图的 `src` 上一并修复（原先卡片图在其他页面会拼错相对地址）
+- [低] 未定义 `menus.main` 时页脚「导航」栏只剩空标题——整栏改为有菜单才渲染
+- [低] 未配 `description` 时首页 `<title>` 拖尾「· 」——为空时只输出站名
+- [低] README 删除已无模板使用的 `sealText` 参数（站名整图方案后残留的文档漂移）
+
 ## v1.1.1 (2026-11-12)
 
 - 移除 v1.1.0 加入的 Giscus 评论与 Cloudflare Web Analytics 信标支持：这两项功能依赖主题之外的前置条件（绑定 Cloudflare、安装 GitHub 应用并取得令牌），与「主题开箱即用、零前置」的定位冲突，故从主题层下线，改由需要的站点在站点层自行接入（站点级模板覆盖 + 站点参数即可实现，不必改主题）。主题本身只修模板自身的问题；本版模板与 v1.0.1 功能一致（og:image、主题自带默认 favicon 均保留）
